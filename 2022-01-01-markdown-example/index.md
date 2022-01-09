@@ -1,7 +1,9 @@
 ---
 {
   "title": "Example Markdown",
-  "tags": ["Markdown", "Getting started"]
+  "tags": ["Markdown", "Getting started"],
+  "author": "Kagura Kanon",
+  "mail": "kagurakanon@protonmail.com"
 }
 ---
 

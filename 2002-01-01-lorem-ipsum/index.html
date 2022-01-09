@@ -11,11 +11,17 @@
 <link rel="stylesheet" href="../static/index.v1.css">
 </head>
 <body>
+<div id="container">
 <h1>Lorem Ipsum</h1>
+<div id="metainfo">
+<div id="author">Kagura Kanon</div>
+<div id="mail"><a href="mailto:kagurakanon@protonmail.com">kagurakanon@protonmail.com</a></div>
+<div id="date">January 01, 2002</div>
+</div>
 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ut quam ac sem
 tincidunt congue. Aenean vestibulum mi enim. Donec elementum turpis in tempor
 blandit. In imperdiet consectetur metus id aliquam. Nulla vel risus molestie,
-consequat ipsum eget, congue enim. Nam nec nibh pharetra, faucibus odio
+consequat ipsum eget, <a href="#">congue enim</a>. Nam nec nibh pharetra, faucibus odio
 vestibulum, imperdiet neque. Fusce vel finibus ligula. Nam viverra maximus
 libero eu posuere. Nullam hendrerit suscipit eleifend. Vestibulum finibus mi a
 nunc dignissim bibendum. Maecenas pellentesque porttitor imperdiet. Sed auctor
@@ -44,8 +50,15 @@ Definition stream_hd {A:Type} (s:stream A) :=
 
 Definition stream_tl {A:Type} (s:stream A) :=
   match s with scons _ s' =&gt; s' end.
-
-(* Getting the Nth element of a stream is a regular fixpoint decreasing on n *)
+</code></pre>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque faucibus
+tellus quis turpis pharetra, quis feugiat orci semper. Praesent in imperdiet
+eros, in accumsan lectus. Proin sit amet vehicula dui, vestibulum vehicula orci.
+Praesent accumsan non nunc eu vulputate. Nunc rhoncus enim vel fermentum mattis.
+In a nisi arcu. Aliquam eu iaculis lectus. Donec tincidunt sapien vel elit
+tristique, non faucibus nulla auctor. Phasellus porta sagittis lectus eget
+aliquam.</p>
+<pre><code class="language-coq">(* Getting the Nth element of a stream is a regular fixpoint decreasing on n *)
 Fixpoint Nth {A:Type} (n:nat) (s:stream A) : A :=
   match n with
       O =&gt; stream_hd s
@@ -58,20 +71,8 @@ Definition stream_decompose {A:Type} (s:stream A) :=
 
 (* This lemma tells us that stream_decompose is an identity *)
 Lemma stream_dec {A:Type} : forall s:stream A, s = stream_decompose s.
-Proof.
-  intros s.
-  destruct s.
-  simpl.
-  trivial.
-Qed.
+Proof. intros s. destruct s. simpl. trivial. Qed.
 </code></pre>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque faucibus
-tellus quis turpis pharetra, quis feugiat orci semper. Praesent in imperdiet
-eros, in accumsan lectus. Proin sit amet vehicula dui, vestibulum vehicula orci.
-Praesent accumsan non nunc eu vulputate. Nunc rhoncus enim vel fermentum mattis.
-In a nisi arcu. Aliquam eu iaculis lectus. Donec tincidunt sapien vel elit
-tristique, non faucibus nulla auctor. Phasellus porta sagittis lectus eget
-aliquam.</p>
 <p>Vivamus risus orci, pharetra tempor accumsan non, vehicula eget eros. Quisque
 sollicitudin leo in risus facilisis tempor. Integer sit amet eros neque. Donec
 non tellus a magna pharetra euismod tristique ac nulla. Nullam quis urna ligula.
@@ -88,5 +89,6 @@ elit, ut blandit arcu euismod consequat.</p>
 <h2 id="translation-by-h.rackham-1">1914 translation by H. Rackham</h2>
 <p>&quot;On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it will frequently occur that pleasures have to be repudiated and annoyances accepted. The wise man therefore always holds in these matters to this principle of selection: he rejects pleasures to secure other greater pleasures, or else he endures pains to avoid worse pains.&quot;</p>
 
+</div>
 </body>
 </html>

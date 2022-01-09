@@ -1,14 +1,16 @@
 ---
 {
   "title": "Lorem Ipsum",
-  "tags": ["Markdown", "Theme"]
+  "tags": ["Markdown", "Theme"],
+  "author": "Kagura Kanon",
+  "mail": "kagurakanon@protonmail.com"
 }
 ---
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ut quam ac sem
 tincidunt congue. Aenean vestibulum mi enim. Donec elementum turpis in tempor
 blandit. In imperdiet consectetur metus id aliquam. Nulla vel risus molestie,
-consequat ipsum eget, congue enim. Nam nec nibh pharetra, faucibus odio
+consequat ipsum eget, [congue enim](#). Nam nec nibh pharetra, faucibus odio
 vestibulum, imperdiet neque. Fusce vel finibus ligula. Nam viverra maximus
 libero eu posuere. Nullam hendrerit suscipit eleifend. Vestibulum finibus mi a
 nunc dignissim bibendum. Maecenas pellentesque porttitor imperdiet. Sed auctor
@@ -40,7 +42,17 @@ Definition stream_hd {A:Type} (s:stream A) :=
 
 Definition stream_tl {A:Type} (s:stream A) :=
   match s with scons _ s' => s' end.
+```
 
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque faucibus
+tellus quis turpis pharetra, quis feugiat orci semper. Praesent in imperdiet
+eros, in accumsan lectus. Proin sit amet vehicula dui, vestibulum vehicula orci.
+Praesent accumsan non nunc eu vulputate. Nunc rhoncus enim vel fermentum mattis.
+In a nisi arcu. Aliquam eu iaculis lectus. Donec tincidunt sapien vel elit
+tristique, non faucibus nulla auctor. Phasellus porta sagittis lectus eget
+aliquam.
+
+```coq
 (* Getting the Nth element of a stream is a regular fixpoint decreasing on n *)
 Fixpoint Nth {A:Type} (n:nat) (s:stream A) : A :=
   match n with
@@ -54,21 +66,8 @@ Definition stream_decompose {A:Type} (s:stream A) :=
 
 (* This lemma tells us that stream_decompose is an identity *)
 Lemma stream_dec {A:Type} : forall s:stream A, s = stream_decompose s.
-Proof.
-  intros s.
-  destruct s.
-  simpl.
-  trivial.
-Qed.
+Proof. intros s. destruct s. simpl. trivial. Qed.
 ```
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque faucibus
-tellus quis turpis pharetra, quis feugiat orci semper. Praesent in imperdiet
-eros, in accumsan lectus. Proin sit amet vehicula dui, vestibulum vehicula orci.
-Praesent accumsan non nunc eu vulputate. Nunc rhoncus enim vel fermentum mattis.
-In a nisi arcu. Aliquam eu iaculis lectus. Donec tincidunt sapien vel elit
-tristique, non faucibus nulla auctor. Phasellus porta sagittis lectus eget
-aliquam.
 
 Vivamus risus orci, pharetra tempor accumsan non, vehicula eget eros. Quisque
 sollicitudin leo in risus facilisis tempor. Integer sit amet eros neque. Donec

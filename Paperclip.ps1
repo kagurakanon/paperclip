@@ -7,6 +7,8 @@ class BlogPost {
   [datetime] $Date
   [string]   $Title
   [string[]] $Tags
+  [string]   $Author
+  [string]   $Mail
 }
 
 function Get-BlogPost {
@@ -54,6 +56,8 @@ function Get-BlogPost {
 
   $local:post.Title = $local:metadata["title"] ?? "No Title"
   $local:post.Tags = $local:metadata["tags"] ?? @()
+  $local:post.Author = $local:metadata["author"] ?? "No Author"
+  $local:post.Mail = $local:metadata["mail"] ?? "No Mail"
 
   $local:htmlfile = Join-Path $post.Path "index.html"
   $local:html = $local:markdown
@@ -74,8 +78,15 @@ function Get-BlogPost {
 <link rel="stylesheet" href="../static/index.v$($cssVersion).css">
 </head>
 <body>
+<div id="container">
 <h1>$($local:post.Title)</h1>
+<div id="metainfo">
+<div id="author">$($local:post.Author)</div>
+<div id="mail"><a href="mailto:$($local:post.Mail)">$($local:post.Mail)</a></div>
+<div id="date">$($local:post.Date | Get-Date -Format "MMMM dd, yyyy" )</div>
+</div>
 $($local:html)
+</div>
 </body>
 </html>
 "@ -join "`n" | Out-File $local:htmlfile -Encoding Utf8
@@ -93,7 +104,7 @@ $script:posts =
 $script:indexfile = Join-Path $env:PWD "index.html"
 
 $script:indexhtml = $script:posts | ForEach-Object {
-  ("<li>$($_.Date) " +
+  ("<li>$($_.Date | Get-Date -Format "yyyy.mm.dd") &emsp;" +
    "<a href=`"$(Split-Path $_.Path -Leaf)/index.html`">$($_.Title)</a></li>")
 } | Join-String -Separator "`n"
 
@@ -111,7 +122,7 @@ $script:indexhtml = $script:posts | ForEach-Object {
 <link rel="stylesheet" href="./static/index.v$($cssVersion).css">
 </head>
 <body>
-<h1>Index</h1>
+<h1 style="text-align: left">Index</h1>
 $($script:indexhtml)
 </body>
 </html>

@@ -1,7 +1,9 @@
 ---
 {
   "title": "Hello world with Paperclip",
-  "tags": ["Getting started"]
+  "tags": ["Getting started"],
+    "author": "Kagura Kanon",
+  "mail": "kagurakanon@protonmail.com"
 }
 ---
 
