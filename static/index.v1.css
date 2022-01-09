@@ -3,7 +3,6 @@ body {
   font-family: KaTeX_Main;
   padding: 60px 7px 30px 7px;
   overflow-wrap: break-word;
-  text-align: justify;
   max-width: 630px;
   margin: 0 auto;
   word-break: break-word;
