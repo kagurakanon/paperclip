@@ -1,0 +1,18 @@
+body {
+  font-size: 16px;
+  font-family: KaTeX_Main;
+  max-width: 680px;
+  margin: 0 auto;
+}
+body code {
+  font-family: KaTeX_Typewriter;
+}
+body pre code {
+  font-family: KaTeX_Typewriter;
+  font-size: 14px;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+/*# sourceMappingURL=index.v1.css.map */

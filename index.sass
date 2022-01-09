@@ -1,0 +1,20 @@
+// sass --watch index.sass static/index.v1.css
+
+$main-font: KaTeX_Main
+$monospace-font: KaTeX_Typewriter
+
+body
+  font-size: 16px
+  font-family: $main-font
+  max-width: 680px
+  margin: 0 auto
+
+  code
+    font-family: $monospace-font
+
+  pre code
+    font-family: $monospace-font
+    font-size: 14px
+    overflow-x: auto
+    white-space: pre-wrap
+    word-wrap: break-word

@@ -1,5 +1,7 @@
 #!/usr/bin/env pwsh
 
+$cssVersion = 1
+
 class BlogPost {
   [string]   $Path
   [datetime] $Date
@@ -62,13 +64,14 @@ function Get-BlogPost {
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$($local:post.Title)</title>
+<meta charset="UTF-8">
+<title>$($local:post.Title)</title>
 
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css" integrity="sha384-R4558gYOUz8mP9YWpZJjofhk+zx0AS11p36HnD2ZKj/6JR5z27gSSULCNHIRReVs" crossorigin="anonymous">
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js" integrity="sha384-z1fJDqw8ZApjGO3/unPWUPsIymfsJmyrDVWC8Tv/a1HeOtGmkwNd/7xUS0Xcnvsx" crossorigin="anonymous"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/auto-render.min.js" integrity="sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR" crossorigin="anonymous"
-      onload="renderMathInElement(document.body);"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css" integrity="sha384-R4558gYOUz8mP9YWpZJjofhk+zx0AS11p36HnD2ZKj/6JR5z27gSSULCNHIRReVs" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js" integrity="sha384-z1fJDqw8ZApjGO3/unPWUPsIymfsJmyrDVWC8Tv/a1HeOtGmkwNd/7xUS0Xcnvsx" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/auto-render.min.js" integrity="sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
+
+<link rel="stylesheet" href="../static/index.v$($cssVersion).css">
 </head>
 <body>
 <h1>$($local:post.Title)</h1>
@@ -94,15 +97,22 @@ $script:indexhtml = $script:posts | ForEach-Object {
    "<a href=`"$(Split-Path $_.Path -Leaf)/index.html`">$($_.Title)</a></li>")
 } | Join-String -Separator "`n"
 
-@('<!DOCTYPE html>',
-  '<html lang="en">',
-  '<head>'
-  '<meta charset="UTF-8">'
-  "<title>Index</title>"
-  '</head>',
-  '<body>',
-  "<h1>Index</h1>"
-  "$($script:indexhtml)",
-  '</body>',
-  '</html>'
-) -join "`n" | Out-File $local:indexfile -Encoding Utf8
+@"
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Index</title>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css" integrity="sha384-R4558gYOUz8mP9YWpZJjofhk+zx0AS11p36HnD2ZKj/6JR5z27gSSULCNHIRReVs" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js" integrity="sha384-z1fJDqw8ZApjGO3/unPWUPsIymfsJmyrDVWC8Tv/a1HeOtGmkwNd/7xUS0Xcnvsx" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/auto-render.min.js" integrity="sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
+
+<link rel="stylesheet" href="./static/index.v$($cssVersion).css">
+</head>
+<body>
+<h1>Index</h1>
+$($script:indexhtml)
+</body>
+</html>
+"@ -join "`n" | Out-File $local:indexfile -Encoding Utf8
