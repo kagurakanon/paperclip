@@ -56,18 +56,24 @@ function Get-BlogPost {
     | ConvertFrom-Markdown
     | Select-Object -ExpandProperty Html
 
-  @('<!DOCTYPE html>',
-    '<html lang="en">',
-    '<head>'
-    '<meta charset="UTF-8">'
-    "<title>$($local:post.Title)</title>"
-    '</head>',
-    '<body>',
-    "<h1>$($local:post.Title)</h1>"
-    "$($local:html)",
-    '</body>',
-    '</html>'
-  ) -join "`n" | Out-File $local:htmlfile -Encoding Utf8
+  @"
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>$($local:post.Title)</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css" integrity="sha384-R4558gYOUz8mP9YWpZJjofhk+zx0AS11p36HnD2ZKj/6JR5z27gSSULCNHIRReVs" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js" integrity="sha384-z1fJDqw8ZApjGO3/unPWUPsIymfsJmyrDVWC8Tv/a1HeOtGmkwNd/7xUS0Xcnvsx" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/auto-render.min.js" integrity="sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR" crossorigin="anonymous"
+      onload="renderMathInElement(document.body);"></script>
+</head>
+<body>
+<h1>$($local:post.Title)</h1>
+$($local:html)
+</body>
+</html>
+"@ -join "`n" | Out-File $local:htmlfile -Encoding Utf8
 
   return $local:post
 }
